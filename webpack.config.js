@@ -18,10 +18,10 @@ const commonConfig = merge([
   {
     output: {
       path: BUILD_DIR,
-      publicPath: '/',
-    },
+      publicPath: '/'
+    }
   },
-  parts.loadJavaScript({ include: APP_DIR }),
+  parts.loadJavaScript({ include: APP_DIR })
 ]);
 
 /** 
@@ -43,8 +43,8 @@ const productionConfig = merge([
     performance: {
       hints: 'warning', // 'error' or false are valid too
       maxEntrypointSize: 150000, // in bytes, default 250k
-      maxAssetSize: 450000, // in bytes
-    },
+      maxAssetSize: 450000 // in bytes
+    }
   },
 
   // Build records
@@ -52,9 +52,9 @@ const productionConfig = merge([
     recordsPath: path.join(__dirname, "records.json"),
     output: {
       chunkFilename: "[name].[chunkhash:8].js",
-      filename: "[name].[chunkhash:8].js",
+      filename: "[name].[chunkhash:8].js"
     },
-    plugins: [new webpack.NamedModulesPlugin()],
+    plugins: [new webpack.NamedModulesPlugin()]
   },
 
   // Clean build folder before re-build
@@ -74,15 +74,15 @@ const productionConfig = merge([
       options: {
         sourceMap: true
       }
-    }],
+    }]
   }),
 
   // Loading Files
   parts.loadImages({
     options: {
       limit: 15000,
-      name: '[name].[hash:8].[ext]',
-    },
+      name: '[name].[hash:8].[ext]'
+    }
   }),
 
   // Minify JavaScripts and StyleSheets
@@ -90,12 +90,12 @@ const productionConfig = merge([
   parts.minifyCSS({
     options: {
       discardComments: {
-        removeAll: true,
+        removeAll: true
       },
       // Run cssnano in safe mode to avoid
       // potentially unsafe transformations.
-      safe: true,
-    },
+      safe: true
+    }
   }),
 
   // Generation source map
@@ -109,15 +109,15 @@ const productionConfig = merge([
           commons: {
             test: /[\\/]node_modules[\\/]/,
             name: 'vendor',
-            chunks: 'all',
-          },
-        },
+            chunks: 'all'
+          }
+        }
       },
       runtimeChunk: {
-        name: 'manifest',
-      },
-    },
-  },
+        name: 'manifest'
+      }
+    }
+  }
 ]);
 
 /** 
@@ -133,7 +133,7 @@ const developmentConfig = merge([
   parts.devServer({
     // Customize host/port here if needed
     host: process.env.HOST,
-    port: process.env.PORT,
+    port: process.env.PORT
   }),
 
   // Loading StyleSheets
@@ -159,9 +159,9 @@ module.exports = (env, argv) => {
     parts.page({
       title: 'Webpack demo',
       entry: {
-        app: path.join(APP_DIR, "index.js"),
+        app: path.join(APP_DIR, "index.js")
       },
-      chunks: ['app', 'manifest', 'vendor'],
+      chunks: ['app', 'manifest', 'vendor']
     })
   ];
   const config = argv.mode === 'production' ? productionConfig : developmentConfig;

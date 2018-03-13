@@ -24,9 +24,9 @@ exports.page = ({ path = '', title, entry, chunks,} = {}) => ({
     new HtmlWebpackPlugin({
       chunks,
       filename: `${path && path + '/'}index.html`,
-      title,
-    }),
-  ],
+      title
+    })
+  ]
 });
 
 /** 
@@ -48,9 +48,9 @@ exports.devServer = ({ host, port } = {}) => ({
     inline: true,
     overlay: {
       errors: true,
-      warnings: true,
-    },
-  },
+      warnings: true
+    }
+  }
 });
 
 
@@ -63,7 +63,7 @@ exports.devServer = ({ host, port } = {}) => ({
   * - Use: Development and Production
   */
 exports.generateSourceMaps = ({ type }) => ({
-  devtool: type, // Default: 'eval' for development
+  devtool: type // Default: 'eval' for development
 });
 
 /** 
@@ -82,10 +82,10 @@ exports.loadJavaScript = ({ include, exclude } = {}) => ({
         test: /\.jsx?$/,
         include,
         exclude,
-        use: 'babel-loader',
-      },
-    ],
-  },
+        use: 'babel-loader'
+      }
+    ]
+  }
 });
 
 /** 
@@ -103,7 +103,7 @@ exports.extractCSS = ({ include, exclude, use }) => {
   const plugin = new ExtractTextPlugin({
     // allChunks is needed to extract from extracted chunks as well.
     allChunks: true,
-    filename: '[name].[contenthash:8].css',
+    filename: '[name].[contenthash:8].css'
   });
 
   return {
@@ -117,11 +117,11 @@ exports.extractCSS = ({ include, exclude, use }) => {
           use: plugin.extract({
             use,
             fallback: 'style-loader',
-          }),
-        },
-      ],
+          })
+        }
+      ]
     },
-    plugins: [plugin],
+    plugins: [plugin]
   };
 };
 
@@ -141,10 +141,10 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
         test: /\.s?css$/,
         include,
         exclude,
-        use: ['style-loader', 'css-loader?sourceMap', 'sass-loader?sourceMap'],
-      },
-    ],
-  },
+        use: ['style-loader', 'css-loader?sourceMap', 'sass-loader?sourceMap']
+      }
+    ]
+  }
 });
 
 /** 
@@ -166,11 +166,11 @@ exports.loadImages = ({ include, exclude, options } = {}) => ({
         exclude,
         use: {
           loader: 'url-loader',
-          options,
-        },
-      },
-    ],
-  },
+          options
+        }
+      }
+    ]
+  }
 });
 
 /** 
@@ -181,8 +181,8 @@ exports.loadImages = ({ include, exclude, options } = {}) => ({
   */
 exports.minifyJavaScript = () => ({
   optimization: {
-    minimizer: [new UglifyWebpackPlugin()],
-  },
+    minimizer: [new UglifyWebpackPlugin()]
+  }
 });
 
 /** 
@@ -198,9 +198,9 @@ exports.minifyCSS = ({ options }) => ({
     new OptimizeCSSAssetsPlugin({
       cssProcessor: cssnano,
       cssProcessorOptions: options,
-      canPrint: false,
-    }),
-  ],
+      canPrint: false
+    })
+  ]
 });
 
 /** 
@@ -212,5 +212,5 @@ exports.minifyCSS = ({ options }) => ({
   * Use: Production
   */
 exports.clean = path => ({
-  plugins: [new CleanWebpackPlugin([path])],
+  plugins: [new CleanWebpackPlugin([path])]
 });
