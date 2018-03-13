@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 
 const BUILD_DIR = path.resolve(__dirname, 'build');
-const APP_DIR = path.resolve(__dirname);
+const APP_DIR = path.resolve(__dirname, 'src');
 
 const parts = require('./webpack.parts');
 
