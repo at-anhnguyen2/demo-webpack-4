@@ -18,7 +18,7 @@ const commonConfig = merge([
   {
     output: {
       path: BUILD_DIR,
-      publicPath: '/'
+      // publicPath: '/'
     }
   },
   parts.loadJavaScript({ include: APP_DIR })

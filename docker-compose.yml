@@ -1,0 +1,14 @@
+version: '3'
+services:
+  web:
+    domainname: anhnguyentexample.com
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
+    command: ./node_modules/.bin/webpack-dev-server --mode development --host 0.0.0.0 --hot
+    image: web
+    container_name: demo-container
+    ports:
+      - 8080:8080
+    volumes:
+      - ./src:/src
